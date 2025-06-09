@@ -25,6 +25,7 @@
             background: var(--bg-color);
             color: var(--text-color);
             display: flex;
+            overflow-x: hidden;
             transition: background 0.5s, color 0.5s;
         }
 
@@ -36,6 +37,7 @@
             height: 100%;
             overflow-y: auto;
             transition: transform 0.3s ease-in-out;
+            z-index: 10;
         }
 
         .sidebar h2 {
@@ -65,6 +67,8 @@
             padding: 2rem;
             width: 100%;
             box-sizing: border-box;
+            position: relative;
+            z-index: 2;
         }
 
         header {
@@ -72,6 +76,7 @@
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
+            height: 50px;
         }
 
         .section {
@@ -179,9 +184,52 @@
         .toggle-sidebar-btn {
             display: none;
         }
+
+        /* Typing effect */
+        .typing {
+            display: inline-block;
+            border-right: 2px solid var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: var(--text-color);
+            }
+        }
+
+        /* Background animation */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black url('https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif') repeat;
+            background-size: cover;
+            z-index: 0;
+            opacity: 0.3;
+        }
     </style>
 </head>
 <body class="dark">
+
+    <!-- Background animation -->
+    <div id="stars"></div>
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
@@ -201,12 +249,11 @@
 
     <!-- Main content -->
     <div class="content">
-        <header>Shaurya's Cool Creations 🚀</header>
+        <header><span class="typing">Shaurya's Cool Creations 🚀</span></header>
 
         <div class="section" id="games">
             <h2>Games</h2>
             <a href="file:///C:/Users/ASUS/Documents/GitHub/flappy%20bird.html" target="_blank">Flappy Bird Game</a>
-            <!-- Add more games here -->
         </div>
 
         <div class="section" id="wallpapers">
